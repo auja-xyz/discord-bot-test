@@ -1,0 +1,29 @@
+{
+  "name": "discord-bot-test",
+  "version": "1.0.0",
+  "description": "playing with discord api",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "start:watch": "ts-node-dev --respawn -- src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurelienjames/discord-bot-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aurelienjames/discord-bot-test/issues"
+  },
+  "homepage": "https://github.com/aurelienjames/discord-bot-test#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
