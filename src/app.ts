@@ -1,6 +1,12 @@
 require('dotenv').config();
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
+const client = new Client({
+   intents: [
+     Intents.FLAGS.GUILDS,
+     Intents.FLAGS.GUILD_MESSAGES,
+     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+     Intents.FLAGS.DIRECT_MESSAGES]
+});
 
 const botToken = process.env.BOT_TOKEN;
 
@@ -27,14 +33,11 @@ client.on("messageCreate", async (msg: any) => {
   } else if (msg.content === "test") {
     client.channels.cache.get(welcomeChannelId).send(`Welcome ${msg.author.username} like this message to open a ticket to join the server...`).then((message: any) => {
       const filter = (reaction: any, user: any) => {
-        console.log('reaction', reaction);
-        console.log('user', user);
-        //return user.id === msg.author.id;
-        return true;
+          user.id === msg.author.id;
       };
       message.react('👍');
       message.react('👎');
-      message.awaitReactions({ max: 1, time: 10000 })
+      message.awaitReactions({ filter, max: 1, time: 10000 })
 	            .then((collected: any) => {
                 console.log('collected', collected);
 		            const reaction = collected.first();
@@ -46,7 +49,7 @@ client.on("messageCreate", async (msg: any) => {
                 }
               })
               .catch((collected: any) => {
-                message.reply('You reacted with neither a thumbs up, nor a thumbs down.');
+                message.reply(`hi`);
                 setTimeout(() => message.delete().then(() => console.log('message deleted')), 5000);
               });
     });
